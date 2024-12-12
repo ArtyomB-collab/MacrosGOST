@@ -1,5 +1,5 @@
-Attribute VB_Name = "MakrosGOSTColorlind"
-Sub MacrosGostColorblind()
+Attribute VB_Name = "MakrosGOST"
+Sub MacrosGost()
     
     ReplaceLinesCarrets1
     ReplaceSpaces2
@@ -502,7 +502,7 @@ Sub CheckListMarkers7()
           
             If Trim(Left(para.Range.Text, 1)) Like "[A-Z]" Or Trim(Left(para.Range.Text, 1)) Like "[А-Я]" Then
                 errorMessage = ERROR_MSG & ": Заглавная буква в списке."
-                para.Range.HighlightColorIndex = wdGreen
+                para.Range.Font.Color = wdColorRed
             End If
           
            If Not para.Next Is Nothing Then
@@ -511,7 +511,7 @@ Sub CheckListMarkers7()
                 Then
         
                         errorMessage = errorMessage & vbNewLine & ERROR_MSG & ": Примечание не должно заканчиваться точкой."
-                        para.Range.HighlightColorIndex = wdGreen
+                        para.Range.Font.Color = wdColorRed
                 End If
            End If
         End If
@@ -651,7 +651,7 @@ Sub Reddots15()
             If (Not (para.Previous Is Nothing)) And para.Previous.Range.listFormat.listType = wdListNoNumbering Then
           
                 If Right(para.Previous.Range.Text, 2) <> ":" & Chr(13) Then
-                    para.Previous.Range.HighlightColorIndex = wdGreen ' ??????? ????
+                    para.Previous.Range.Font.Color = wdColorRed ' ??????? ????
                 End If
             End If
         End If
@@ -659,7 +659,7 @@ Sub Reddots15()
         (IsNumeric(Left(Trim(para.Range.Text), 1)) And (Mid(para.Range.Text, 2, 1) = ".")) Or _
         (IsNumeric(Left(Trim(para.Range.Text), 1)) And (Mid(para.Range.Text, 2, 1) = ")")) Then
             ' Выделяем параграф красным
-            para.Range.HighlightColorIndex = wdGreen ' Красный цвет
+            para.Range.Font.Color = wdColorRed ' Красный цвет
             
             ' Проверяем, было ли сообщение уже показано
             If Not messageShown Then
@@ -854,7 +854,7 @@ Sub CenterAlignIfImageOrTable18()
                     para.Previous.Range.InsertBefore vbCrLf
              Else
                 ' Устанавливаем цвет шрифта в красный
-                    para.Range.HighlightColorIndex = wdGreen
+                    para.Range.Font.Color = wdColorRed
                     
                     If Not messageShown Then
                        ' MsgBox "Некоторые рисунки подписаны неправильно", vbExclamation
@@ -888,7 +888,7 @@ Sub CenterAlignIfImageOrTable18()
                     selection.TypeParagraph
                 Else
                 ' Устанавливаем цвет шрифта в красный
-                    para.Previous.Range.HighlightColorIndex = wdGreen
+                    para.Previous.Range.Font.Color = wdColorRed
                     
                     If Not messageShownT Then
                        ' MsgBox "Некоторые таблицы подписаны неправильно", vbExclamation
@@ -1076,7 +1076,5 @@ Sub BlackLiterature24()
     End With
     MsgBox "ГОСТ соблюден"
 End Sub
-
-
 
 
